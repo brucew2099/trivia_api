@@ -79,20 +79,20 @@ One note before you delve into your tasks: for each endpoint you are expected to
     {
         "success": true,
         "categories": {
-            1: "Science", 
-            2: "Art", 
-            3: "Geography", 
-            4: "History", 
-            5: "Entertainment", 
-            6: "Sports"
+            "1": "Science",
+            "2": "Art", 
+            "3": "Geography",
+            "4": "History", 
+            "5": "Entertainment", 
+            "6": "Sports"
         }, 
         "total_categories": 6
     }
 ```
 
-#### GET `/questions`
+### GET `/questions`
 
-- Returns all questions in paginated form.
+- Returns all questions in paginated format.
 - Request parameters: 
   - NONE
 - Response JSON:
@@ -419,7 +419,6 @@ One note before you delve into your tasks: for each endpoint you are expected to
             "question": "Who invented Peanut Butter?"
         }
     }
-
 ```
 ## Error Handling
 
@@ -439,7 +438,7 @@ The error codes currently returned are:
 * 405 - Method Not Allowed
 * 406 - Not Acceptable
 * 422 – Unprocessable
-* 500 – Something"s Not Right
+* 500 – Something's Not Right
 
 ## Testing
 
