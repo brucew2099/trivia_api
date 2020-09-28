@@ -21,8 +21,6 @@ class TriviaTestCase(unittest.TestCase):
         self.app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_TEST_DATABASE_URI
         self.app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = SQLALCHEMY_TRACK_MODIFICATIONS
 
-        #setup_db(self.app)
-
         # binds the app to the current context
         with self.app.app_context():
             self.db = SQLAlchemy()
@@ -45,10 +43,10 @@ class TriviaTestCase(unittest.TestCase):
         }
     
     def tearDown(self):
-        """Executed after reach test"""
+        """Executed after each test"""
 
     """
-    TODO
+    DONE
     Write at least one test for each service for successful operation and for expected errors.
     """
 

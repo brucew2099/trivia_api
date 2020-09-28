@@ -6,6 +6,14 @@
 
 ### Installing Dependencies
 
+#### Key dependencies
+
+- [corsproxy](https://www.npmjs.com/package/corsproxy): is a standalone https-only CORS proxy.
+
+- [jquery](https://jquery.com/): is a fast, small, and feature-rich JavaScript library which makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers.
+
+- [react](https://reactjs.org/): is a JavaScript library for building user interfaces.
+
 #### Installing Node and NPM
 
 This project depends on Nodejs and Node Package Manager (NPM). Before continuing, you must download and install Node (the download includes NPM) from [https://nodejs.com/en/download](https://nodejs.org/en/download/).
@@ -20,9 +28,10 @@ npm install
 
 >_tip_: **npm i** is shorthand for **npm install**
 
+
 ## Required Tasks
 
-## Running Your Frontend in Dev Mode
+### Running Your Frontend in Dev Mode
 
 The frontend app was built using create-react-app. In order to run the app in development mode use ```npm start```. You can change the script in the ```package.json``` file. 
 
@@ -40,9 +49,11 @@ After you complete your endpoints, ensure you return to and update the frontend 
 - Correct endpoints
 - Update response body handling 
 
+
 ## Optional: Styling
 
 In addition, you may want to customize and style the frontend by editing the CSS in the ```stylesheets``` folder. 
+
 
 ## Optional: Game Play Mechanics
 

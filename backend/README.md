@@ -24,11 +24,11 @@ This will install all of the required packages we selected within the `requireme
 
 ##### Key Dependencies
 
-- [Flask](http://flask.pocoo.org/)  is a lightweight backend microservices framework. Flask is required to handle requests and responses.
+- [Flask](http://flask.pocoo.org/) is a lightweight backend microservices framework. Flask is required to handle requests and responses.
 
-- [SQLAlchemy](https://www.sqlalchemy.org/) is the Python SQL toolkit and ORM we'll use handle the lightweight sqlite database. You'll primarily work in app.py and can reference models.py. 
+- [SQLAlchemy](https://www.sqlalchemy.org/) is the Python SQL toolkit and ORM we"ll use handle the lightweight sqlite database. You"ll primarily work in app.py and can reference models.py. 
 
-- [Flask-CORS](https://flask-cors.readthedocs.io/en/latest/#) is the extension we'll use to handle cross origin requests from our frontend server. 
+- [Flask-CORS](https://flask-cors.readthedocs.io/en/latest/#) is the extension we"ll use to handle cross origin requests from our frontend server. 
 
 ## Database Setup
 With Postgres running, restore a database using the trivia.psql file provided. From the backend folder in terminal run:
@@ -52,7 +52,8 @@ Setting the `FLASK_ENV` variable to `development` will detect file changes and r
 
 Setting the `FLASK_APP` variable to `flaskr` directs flask to use the `flaskr` directory and the `__init__.py` file to find the application. 
 
-## Tasks
+
+## Tasks - @DONE
 
 One note before you delve into your tasks: for each endpoint you are expected to define the endpoint and response data. The frontend will be a plentiful resource because it is set up to expect certain endpoints and response data formats already. You should feel free to specify endpoints in your own way; if you do so, make sure to update the frontend or you will get some unexpected behavior. 
 
@@ -66,31 +67,382 @@ One note before you delve into your tasks: for each endpoint you are expected to
 8. Create a POST endpoint to get questions to play the quiz. This endpoint should take category and previous question parameters and return a random questions within the given category, if provided, and that is not one of the previous questions. 
 9. Create error handlers for all expected errors including 400, 404, 422 and 500. 
 
-REVIEW_COMMENT
+## Endpoints
+
+### GET `/categories`
+
+- Retrieves all categories.
+- Request parameters: 
+  - NONE
+- Response JSON:
+```json
+    {
+        "success": true,
+        "categories": {
+            1: "Science", 
+            2: "Art", 
+            3: "Geography", 
+            4: "History", 
+            5: "Entertainment", 
+            6: "Sports"
+        }, 
+        "total_categories": 6
+    }
 ```
-This README is missing documentation of your endpoints. Below is an example for your endpoint to get all categories. Please use it as a reference for creating your documentation and resubmit your code. 
 
-Endpoints
-GET '/categories'
-GET ...
-POST ...
-DELETE ...
+#### GET `/questions`
 
-GET '/categories'
-- Fetches a dictionary of categories in which the keys are the ids and the value is the corresponding string of the category
-- Request Arguments: None
-- Returns: An object with a single key, categories, that contains a object of id: category_string key:value pairs. 
-{'1' : "Science",
-'2' : "Art",
-'3' : "Geography",
-'4' : "History",
-'5' : "Entertainment",
-'6' : "Sports"}
-
+- Returns all questions in paginated form.
+- Request parameters: 
+  - NONE
+- Response JSON:
+```json
+    {
+        "success": true,
+        "questions": [
+            {
+                "answer": "Apollo 13", 
+                "category": 5, 
+                "difficulty": 4, 
+                "id": 2, 
+                "question": "What movie earned To..., in 1996?"
+            }, 
+            {
+                "answer": "Tom Cruise", 
+                "category": 5, 
+                "difficulty": 4, 
+                "id": 4, 
+                "question": "What actor did autho...ed Lestat?"
+            }, 
+            {
+                "answer": "Maya Angelou", 
+                "category": 4, 
+                "difficulty": 2, 
+                "id": 5, 
+                "question": "Whose autobiography ...?"
+            }, 
+            {
+                "answer": "Edward Scissorhands", 
+                "category": 5, 
+                "difficulty": 3, 
+                "id": 6, 
+                "question": "What was the title o...ppendages?"
+            }, 
+            {
+                "answer": "Muhammad Ali", 
+                "category": 4, 
+                "difficulty": 1, 
+                "id": 9, 
+                "question": "What boxer...sius Clay?"
+            }, 
+            {
+                "answer": "Brazil", 
+                "category": 6, 
+                "difficulty": 3, 
+                "id": 10, 
+                "question": "Which is the only te...ournament?"
+            }, 
+            {
+                "answer": "Uruguay",
+                "category": 6, 
+                "difficulty": 4, 
+                "id": 11, 
+                "question": "Which country won th...p in 1930?"
+            }, 
+            {
+                "answer": "George Washington Carver",
+                "category": 4, 
+                "difficulty": 2, 
+                "id": 12, 
+                "question": "Who invented Peanut Butter?"
+            }, 
+            {
+                "answer": "Lake Victoria",
+                "category": 3, 
+                "difficulty": 2, 
+                "id": 13, 
+                "question": "What is the largest ...in Africa?"
+            }, 
+            {
+                "answer": "The Palace of Versailles",
+                "category": 3, 
+                "difficulty": 3, 
+                "id": 14, 
+                "question": "In which royal palac...f Mirrors?"
+            }
+        ],
+        "total_questions": 25,
+        "categories": ["Science", "Art", "Geography", "History", "Entertainment", "Sports"]
+    }
 ```
 
+### DELETE `/questions/<int:question_id>`
+
+- Deletes the question with the specified ID
+- Request Parameters: 
+  - question_id - ID of question to be deleted
+- Response JSON:
+```json
+    {
+        "success": true,
+        "deleted": 35,
+        "questions": [
+        {
+            "answer": "Apollo 13", 
+            "category": 5, 
+            "difficulty": 4, 
+            "id": 2, 
+            "question": "What movie earned To..., in 1996?"
+        }, 
+        {
+            "answer": "Tom Cruise", 
+            "category": 5, 
+            "difficulty": 4, 
+            "id": 4, 
+            "question": "What actor did autho...ed Lestat?"
+        }, 
+        {
+            "answer": "Maya Angelou", 
+            "category": 4, 
+            "difficulty": 2, 
+            "id": 5, 
+            "question": "Whose autobiography ...?"
+        }, 
+        {
+            "answer": "Edward Scissorhands", 
+            "category": 5, 
+            "difficulty": 3, 
+            "id": 6, 
+            "question": "What was the title o...ppendages?"
+        }, 
+        {
+            "answer": "Muhammad Ali", 
+            "category": 4, 
+            "difficulty": 1, 
+            "id": 9, 
+            "question": "What boxer...sius Clay?"
+        }, 
+        {
+            "answer": "Brazil", 
+            "category": 6, 
+            "difficulty": 3, 
+            "id": 10, 
+            "question": "Which is the only te...ournament?"
+        }, 
+        {
+            "answer": "Uruguay", 
+            "category": 6, 
+            "difficulty": 4, 
+            "id": 11, 
+            "question": "Which country won th...p in 1930?"
+        }, 
+        {
+            "answer": "George Washington Carver", 
+            "category": 4, 
+            "difficulty": 2, 
+            "id": 12, 
+            "question": "Who invented Peanut Butter?"
+        }, 
+        {
+            "answer": "Lake Victoria", 
+            "category": 3, 
+            "difficulty": 2, 
+            "id": 13, 
+            "question": "What is the largest ...in Africa?"
+        }, 
+        {
+            "answer": "The Palace of Versailles", 
+            "category": 3, 
+            "difficulty": 3, 
+            "id": 14, 
+            "question": "In which royal palac...f Mirrors?"
+        }
+        ],
+        "total_questions": 25
+    }
+```
+
+### POST `/questions`
+
+- Creates a new question or search for questions with specified search phrase based on whether the search field in the UI is filled in.
+- Request parameters:
+  - NONE (form body is sent in through form submission)
+- Response: JSON
+  - 1. Adding new question
+```json
+    {
+        "success": true,
+        "created": 35,
+        "questions": [
+        {
+            "answer": "Apollo 13", 
+            "category": 5, 
+            "difficulty": 4, 
+            "id": 2, 
+            "question": "What movie earned To..., in 1996?"
+        }, 
+        {
+            "answer": "Tom Cruise", 
+            "category": 5, 
+            "difficulty": 4, 
+            "id": 4, 
+            "question": "What actor did autho...ed Lestat?"
+        }, 
+        {
+            "answer": "Maya Angelou", 
+            "category": 4, 
+            "difficulty": 2, 
+            "id": 5, 
+            "question": "Whose autobiography ...?"
+        }, 
+        {
+            "answer": "Edward Scissorhands", 
+            "category": 5, 
+            "difficulty": 3, 
+            "id": 6, 
+            "question": "What was the title o...ppendages?"
+        }, 
+        {
+            "answer": "Muhammad Ali", 
+            "category": 4, 
+            "difficulty": 1, 
+            "id": 9, 
+            "question": "What boxer...sius Clay?"
+        }, 
+        {
+            "answer": "Brazil", 
+            "category": 6, 
+            "difficulty": 3, 
+            "id": 10, 
+            "question": "Which is the only te...ournament?"
+        }, 
+        {
+            "answer": "Uruguay", 
+            "category": 6, 
+            "difficulty": 4, 
+            "id": 11, 
+            "question": "Which country won th...p in 1930?"
+        }, 
+        {
+            "answer": "George Washington Carver", 
+            "category": 4, 
+            "difficulty": 2, 
+            "id": 12, 
+            "question": "Who invented Peanut Butter?"
+        }, 
+        {
+            "answer": "Lake Victoria", 
+            "category": 3, 
+            "difficulty": 2, 
+            "id": 13, 
+            "question": "What is the largest ...in Africa?"
+        }, 
+        {
+            "answer": "The Palace of Versailles", 
+            "category": 3, 
+            "difficulty": 3, 
+            "id": 14, 
+            "question": "In which royal palac...f Mirrors?"
+        }
+        ],
+        "total_questions": 26
+    }
+```
+  - 2. Search for questions
+```json
+    {
+        "success": true,
+        "questions": [
+        {
+            "answer": "Tom Cruise",
+            "category": 5,
+            "difficulty": 4,
+            "id": 4,
+            "question": "What actor did auth...her beloved Lestat?"
+        }
+        ],
+        "total_questions": 26
+    }
+```
+
+### GET `/categories/<int:category_id>/questions`
+
+- Retrieves questions by category based on the category ID from the url.
+- Request parameters: 
+  - category_id - ID of category interested
+- Response: JSON
+```json
+    {
+        "success": true,
+        "questions": [
+        {
+            "answer": "Lake Victoria", 
+            "category": 3, 
+            "difficulty": 2, 
+            "id": 13, 
+            "question": "What is the largest ...in Africa?"
+        }, 
+        {
+            "answer": "The Palace of Versailles", 
+            "category": 3, 
+            "difficulty": 3, 
+            "id": 14, 
+            "question": "In which royal palac...f Mirrors?"
+        }, 
+        {
+            "answer": "Agra", 
+            "category": 3, 
+            "difficulty": 2, 
+            "id": 15, 
+            "question": "The Taj Mahal is loc...dian city?"
+        }
+        ],
+        "current_category": "Geography",
+        "total_questions": 25
+    }
+```
+
+### POST `/quizzes`
+
+- Retrieves random question from the same category which is not in previous question list.
+- Request parameters:
+  - NONE (form body is sent in through form submission)
+- Response JSON:
+```json
+    {
+        "success": true,
+        "question": {
+            "answer": "George Washington Carver",
+            "category": 4,
+            "difficulty": 2,
+            "id": 12,
+            "question": "Who invented Peanut Butter?"
+        }
+    }
+
+```
+## Error Handling
+
+Errors are returned in the following JSON format:
+```json
+      {
+        "success": "False",
+        "error": 404,
+        "message": "Not Found",
+      }
+```
+
+The error codes currently returned are:
+
+* 400 – Bad Request
+* 404 – Not Found
+* 405 - Method Not Allowed
+* 406 - Not Acceptable
+* 422 – Unprocessable
+* 500 – Something"s Not Right
 
 ## Testing
+
 To run the tests, run
 ```
 dropdb trivia_test
